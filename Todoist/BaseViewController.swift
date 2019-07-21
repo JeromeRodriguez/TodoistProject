@@ -34,7 +34,7 @@ class BaseViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "AddTodoSegue") {
+        if(segue.identifier == "AddTodoSegue") { 
             let addTaskVC = segue.destination as! AddTaskViewController
             addTaskVC.delegate = self
         } else {
