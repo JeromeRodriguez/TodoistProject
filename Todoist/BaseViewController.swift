@@ -34,7 +34,7 @@ class BaseViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "AddTodoSegue") { 
+        if(segue.identifier == "AddTodoSegue") {
             let addTaskVC = segue.destination as! AddTaskViewController
             addTaskVC.delegate = self
         } else {
@@ -61,6 +61,7 @@ class BaseViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.taskLabel.text = todoList[indexPath.row].todoTitle
         cell.taskCategory.text = todoList[indexPath.row].todoCategory
         cell.taskTime.text = todoList[indexPath.row].todoDeadline
+        cell.isHighlighted = false
         return cell
     }
         
@@ -72,6 +73,7 @@ class BaseViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         self.title = "Todoist list"
         self.tableView.tableFooterView = UIView()
+        self.tableView.isEditing = true
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -79,5 +81,17 @@ class BaseViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "EditToSegue", sender: indexPath);
     }
+    
+//    For editing table rows
+//    func tableView(UITableView, willBeginEditingRowAt: IndexPath)
+//    Tells the delegate that the table view is about to go into editing mode.
+//
+//    func tableView(UITableView, didEndEditingRowAt: IndexPath?)
+//    Tells the delegate that the table view has left editing mode.
+    
+//    For reordering table rows
+//    func tableView(UITableView, targetIndexPathForMoveFromRowAt: IndexPath, toProposedIndexPath: IndexPath) -> IndexPath
+//    Asks the delegate to return a new index path to retarget a proposed move of a row.
+
 }
 
